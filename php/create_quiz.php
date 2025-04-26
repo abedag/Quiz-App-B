@@ -12,6 +12,11 @@ try {
   $query -> bindParam(':section_id', $section_id);
   $query -> bindParam(':created_by', $created_by);
 
+  if ($query->execute()) {
+    echo json_encode(["message" => "Quiz created successfully", "quiz_id" => $conn->lastInsertId()]);
+  } else {
+    echo json_encode(["error" => "Failed to create quiz"]);
+  }
 
 } catch(PDOException $e) {
   echo json_encode(["error" => "Quiz creation error:" . $e -> getMessage()]);
