@@ -9,6 +9,17 @@ try {
 
     $hashed = password_hash($password, PASSWORD_DEFAULT);
 
+    $query = $conn->prepare("INSERT INTO users (email, username, password) VALUES (:email, :username, :password)");
+
+    $query->bindParam(':email', $email);
+    $query->bindParam(':username', $username);
+    $query->bindParam(':password', $password);
+
+    if ($query->execute()) {
+      echo json_encode(["message" => "Registered successfully"]);
+    } else {
+      echo json_encode(["error" => "Registration Failed"]);
+    }
   }
 
 } catch(PDOException $e) {
