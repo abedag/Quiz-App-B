@@ -20,6 +20,8 @@ try {
     } else {
       echo json_encode(["error" => "Registration Failed"]);
     }
+  } else {
+    echo json_encode(["error" => "Missing requirements"]);
   }
 
 } catch(PDOException $e) {
