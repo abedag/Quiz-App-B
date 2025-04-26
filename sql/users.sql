@@ -1,0 +1,2 @@
+CREATE DATABASE webAppDB;
+USE webAppDB;
