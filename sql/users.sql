@@ -11,3 +11,7 @@ CREATE TABLE users (
   role ENUM('user', 'admin') DEFAULT 'user'
 );
 
+INSERT INTO users (email, username, password, role)
+VALUES ('admin@gmail.com', 'admin', 'admin123', 'admin');
+
+SELECT * FROM users;
