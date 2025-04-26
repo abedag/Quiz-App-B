@@ -35,7 +35,15 @@ try {
 
   $query->bindValue(':quiz_id', $quiz_id, PDO::PARAM_INT);
 
-
+  if ($query->execute()) {
+    if ($query->rowCount() > 0) {
+      echo json_encode(["message" => "Quiz updated successfully"]);
+    } else {
+      echo json_encode(["error" => "No changes made or quiz not found"]);
+    }
+  } else {
+    echo json_encode(["error" => "Failed to update quiz"]);
+  }
 
 } catch (PDOException $e) {
   echo json_encode(["error" => $e->getMessage()]);
