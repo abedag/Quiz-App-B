@@ -26,6 +26,15 @@ try {
     exit;
   }
 
+  $sql = "UPDATE quizzes SET " . implode(', ', $fields) . " WHERE id = :quiz_id";
+  $query = $conn->prepare($sql);
+
+  foreach ($params as $key => $value) {
+    $query->bindValue($key, $value);
+  }
+
+  $query->bindValue(':quiz_id', $quiz_id, PDO::PARAM_INT);
+
 
 
 } catch (PDOException $e) {
