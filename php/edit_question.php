@@ -44,6 +44,8 @@ try {
     }
   }
 
+  echo json_encode(["message" => "Question and options updated successfully"]);
+
 } catch (PDOException $e) {
   echo json_encode(["error" => $e->getMessage()]);
 }
