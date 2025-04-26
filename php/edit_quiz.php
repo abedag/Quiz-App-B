@@ -11,6 +11,22 @@ try {
   $fields = [];
   $params = [];
 
+  if (!empty($_POST['title'])) {
+    $fields[] = "title = :title";
+    $params[':title'] = $_POST['title'];
+  }
+
+  if (!empty($_POST['section_id'])) {
+    $fields[] = "section_id = :section_id";
+    $params[':section_id'] = $_POST['section_id'];
+  }
+
+  if (empty($fields)) {
+    echo json_encode(["error" => "No fields to update"]);
+    exit;
+  }
+
+
 
 } catch (PDOException $e) {
   echo json_encode(["error" => $e->getMessage()]);
